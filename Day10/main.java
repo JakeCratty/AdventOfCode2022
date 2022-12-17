@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.lang.Math;
 import java.util.Iterator;
+import java.lang.Thread;
 
 class Main
 {
@@ -38,9 +39,9 @@ class Main
 			executeInstruction(tokens, commandToCycle.get(tokens[0]));
 		}
 		System.out.println("Signal strength sum is " + sum);
-		for(int i = 0; i < 6; i++){
-			System.out.println(monitor[i]);
-		}
+		// for(int i = 0; i < 6; i++){
+		// 	System.out.println(monitor[i]);
+		// }
 	}
 
 	public static int currentRow = 0;
@@ -49,7 +50,7 @@ class Main
 		//beginning of cycle
 		//System.out.println("Beginning of Cycle " + currentCycle + "\tX is " + x);
 		if((currentCycle + 20) % 40 == 0){
-			System.out.println("Beginning of Cycle " + currentCycle + "\tX is " + x);
+			//System.out.println("Beginning of Cycle " + currentCycle + "\tX is " + x);
 			int signalStrength = currentCycle * x;
 			sum += signalStrength;
 		}
@@ -60,6 +61,8 @@ class Main
 		monitor[currentRow] += newChar;
 		currentCol++;
 		if(currentCol > 39){
+			System.out.println(monitor[currentRow]);
+			Thread.sleep(1000);
 			currentRow++;
 			currentCol = 0;
 		}
